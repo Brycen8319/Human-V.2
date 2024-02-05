@@ -1,0 +1,42 @@
+import time
+import random
+
+class HumanLikeCreature:
+    def __init__(self, name):
+        self.name = name
+        self.age = 0
+        self.reproduction_rate = 0.02  # Adjust reproduction rate as needed
+        self.population = 1
+
+    def grow(self):
+        self.age += 1
+
+    def reproduce(self):
+        if random.random() < self.reproduction_rate:
+            self.population += 1
+
+    def build_structure(self):
+        # Simulate building a structure
+        print(f"{self.name} is building a structure.")
+
+# Main simulation loop
+population_size = 10
+creatures = [HumanLikeCreature(f"Creature{i}") for i in range(population_size)]
+
+while True:
+    # Grow and reproduce each creature
+    for creature in creatures:
+        creature.grow()
+        creature.reproduce()
+        creature.build_structure()
+
+    # Multiply Earth's speed by 100
+    time.sleep(0.01)  # Decrease sleep time to speed up simulation
+
+    # Print population statistics
+    total_population = sum(creature.population for creature in creatures)
+    print(f"Total population: {total_population}")
+
+    # Break the loop after a certain number of iterations (optional)
+    # if total_population >= 10000:
+    #     break
